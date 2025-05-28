@@ -21,14 +21,14 @@ import {
   PET_COMMAND,
   TRADE_OFFER,
   PUZZLE_SOLVE,
-} from "../images.js";
-import { read, update, write } from "./utils/CRUD.js";
-import { checkLevel, updateLevel } from "./security/levelcheck.js";
-import { getUserInfo } from "./security/auth/login.js";
-import { startLevel } from "./pointing/points.js";
-import { useHint } from "./pointing/hints.js";
+} from "./images.js";
+import { read, update, write } from "./src/utils/CRUD.js";
+import { checkLevel, updateLevel } from "./src/security/levelcheck.js";
+import { getUserInfo } from "./src/security/auth/login.js";
+import { startLevel } from "./src/pointing/points.js";
+import { useHint } from "./src/pointing/hints.js";
 import { Timestamp } from "firebase-admin/firestore";
-import { admin } from "../admin_fire.js";
+import { admin } from "./admin_fire.js";
 
 const app = express();
 
