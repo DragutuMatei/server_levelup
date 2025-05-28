@@ -39,9 +39,9 @@ app.use(function (req, res, next) {
   // res.setHeader("Access-Control-Allow-Origin", "https://osfiir.ro");
   const hosts = ["https://osfiir.ro", "http://localhost:3000"];
   
-  if(hosts.includes(req.headers.origin)) {
+  // if(hosts.includes(req.headers.origin)) {
     res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-  }
+  // }
 
   // res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
