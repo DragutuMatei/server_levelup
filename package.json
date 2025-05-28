@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "./src/server.js",
   "scripts": {
+    
+    "build": "rimraf dist && babel src --out-dir dist  --copy-files",
     "start:dev": "nodemon --exec babel-node ./src/server.js"
   },
   "author": "",
