@@ -14,10 +14,37 @@ const checkLevel = async (req, res) => {
 
 const updateLevel = async (req, res) => {
   const { resp, uid, level, cat, level_hint } = req.body;
-  console.log(typeof resp);
-  console.log(resp);
 
-  res.status(200).json({resp:resp})
+  let decizie = false;
+  const actual_level = level - 1;
+  let rezolvare = process.env[`LEVEL_${actual_level}`];
+
+  const unique_levels = [1, 11, 17];
+  const special_levels = [1, 11, 17];
+
+  if (unique_levels.includes(actual_level)) {
+    rezolvare = rezolvare.split("~");
+    decizie = true;
+    for (let [index, c] of Object.keys(resp).entries()) {
+      if (resp[c] != rezolvare[index]) {
+        decizie = false;
+        break;
+      }
+    }
+  } else if (special_levels.includes(actual_level)) {
+    rezolvare = rezolvare.split("~");
+    if (rezolvare.includes(resp)) {
+      decizie = true;
+    }
+  } else {
+    if (resp == rezolvare) {
+      decizie = true;
+    }
+  }
+
+  if (!decizie) {
+    res.status(200).json({ ok: false, message: "Nu e ok!" });
+  }
 
   let punctaj = 0;
   switch (cat) {
