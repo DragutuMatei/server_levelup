@@ -90,7 +90,7 @@ const updateLevel = async (req, res) => {
   console.log(updated);
   try {
     await write(`users/${uid}`, updated);
-    res.status(200).json({ ok: true });
+    res.status(200).json({ ok: true, message:"Este ok!" });
   } catch (error) {
     res.status(200).json({ ok: false, error });
   }
