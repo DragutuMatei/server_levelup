@@ -37,7 +37,12 @@ app.use(json());
 app.use(function (req, res, next) {
   // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   // res.setHeader("Access-Control-Allow-Origin", "https://osfiir.ro");
-  const hosts = ["https://osfiir.ro", "http://localhost:3000", "https://levelup.osfiir.ro"];
+  const hosts = [
+    "https://osfiir.ro",
+    "http://localhost:3000",
+    "https://levelup.osfiir.ro",
+    "https://velvety-chaja-7d97a7.netlify.app",
+  ];
 
   // if(hosts.includes(req.headers.origin)) {
   res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
