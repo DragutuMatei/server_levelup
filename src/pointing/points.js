@@ -11,7 +11,7 @@ const startLevel = async (req, res) => {
         points: 0,
         hint: false,
         start_time: admin.database.ServerValue.TIMESTAMP,
-        // finish_time: 0,
+        finish_time: admin.database.ServerValue.TIMESTAMP,
       },
       ...user.levels,
     };
@@ -30,4 +30,20 @@ const startLevel = async (req, res) => {
   }
 };
 
-export { startLevel };
+const ghicit = async (req, res) => {
+  const { uid, nume } = req.body;
+  const user = await read(`/users/${uid}`);
+  let ghiciti = user.ghiciti !== "" ? user.ghiciti + `, ${nume}` : nume;
+  const updated = {
+    ...user,
+    ghiciti,
+  };
+  try {
+    await update(`users/${uid}`, updated);
+    res.status(200).json({ ok: true });
+  } catch (error) {
+    res.status(200).json({ ok: false, error });
+  }
+};
+
+export { startLevel, ghicit };

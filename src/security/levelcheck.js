@@ -37,7 +37,7 @@ const updateLevel = async (req, res) => {
       [level_hint]: {
         ...user.levels[level_hint],
         finish_time:
-          !Object.hasOwn(user.levels[level_hint], "finish_time") &&
+          // !Object.hasOwn(user.levels[level_hint], "finish_time") &&
           admin.database.ServerValue.TIMESTAMP,
         points: user.levels[level_hint].hint
           ? punctaj - (punctaj / 2 + 1)

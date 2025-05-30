@@ -25,7 +25,7 @@ import {
 import { read, update, write } from "./src/utils/CRUD.js";
 import { checkLevel, updateLevel } from "./src/security/levelcheck.js";
 import { getUserInfo } from "./src/security/auth/login.js";
-import { startLevel } from "./src/pointing/points.js";
+import { ghicit, startLevel } from "./src/pointing/points.js";
 import { useHint } from "./src/pointing/hints.js";
 import { Timestamp } from "firebase-admin/firestore";
 import { admin } from "./admin_fire.js";
@@ -37,10 +37,10 @@ app.use(json());
 app.use(function (req, res, next) {
   // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   // res.setHeader("Access-Control-Allow-Origin", "https://osfiir.ro");
-  const hosts = ["https://osfiir.ro", "http://localhost:3000"];
-  
+  const hosts = ["https://osfiir.ro", "http://localhost:3000", "https://levelup.osfiir.ro"];
+
   // if(hosts.includes(req.headers.origin)) {
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   // }
 
   // res.setHeader("Access-Control-Allow-Origin", "*");
@@ -82,7 +82,8 @@ const random = (str) => {
 app.post("/settings/update", (req, res) => {
   res.status(200).json({
     message: "acesta este API call-ul corect!",
-    code: random(CORECT),
+    // code: random(CORECT),
+    code: CORECT,
   });
 });
 
@@ -234,7 +235,7 @@ app.get("/", (req, res) => {
 
 function setCustomHeaders(res, data) {
   res.setHeader("Payment-info", "Total cart");
-  res.setHeader("Payment-amount", "4314");
+  res.setHeader("Payment-amount", "2000");
 }
 
 app.get("/api/getdata", (req, res) => {
@@ -256,8 +257,9 @@ app.post("/updateUserLevel", async (req, res) => {
       name: user.displayName,
       qr_scanned: false,
       points: 0,
+      ghiciti: "",
       levels: {
-        created_at: admin.database.ServerValue.TIMESTAMP
+        created_at: admin.database.ServerValue.TIMESTAMP,
         /*
         level_1: {
           points:5,
@@ -285,10 +287,10 @@ app.post("/checkLevel", checkLevel);
 app.post("/updateLevel", updateLevel);
 
 app.post("/useHint", useHint);
+app.post("/ghicit", ghicit);
 
 app.post("/test", (req, res) => {
   const { uid } = req.body;
-  console.log("test", uid);
   update(`/users/${uid}`, { qr_scanned: true });
 });
 
