@@ -87,8 +87,8 @@ const random = (str) => {
 app.post("/settings/update", (req, res) => {
   res.status(200).json({
     message: "acesta este API call-ul corect!",
-    // code: random(CORECT),
-    code: CORECT,
+    code: random(CORECT),
+    // code: CORECT,
   });
 });
 
