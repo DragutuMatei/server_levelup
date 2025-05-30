@@ -17,6 +17,8 @@ const updateLevel = async (req, res) => {
   console.log(typeof resp);
   console.log(resp);
 
+  res.status(200).json({resp:resp})
+
   let punctaj = 0;
   switch (cat) {
     case "usor":
