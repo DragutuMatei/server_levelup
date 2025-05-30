@@ -13,7 +13,9 @@ const checkLevel = async (req, res) => {
 };
 
 const updateLevel = async (req, res) => {
-  const { uid, level, cat, level_hint } = req.body;
+  const { resp, uid, level, cat, level_hint } = req.body;
+  console.log(typeof resp);
+  console.log(resp);
 
   let punctaj = 0;
   switch (cat) {
